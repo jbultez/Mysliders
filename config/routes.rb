@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
+  get 'user_sessions/new'
+
+  get 'user_sessions/create'
+
+  get 'user_sessions/destroy'
+
   resources :users
 # pour la resource slides sur le frontend,
 # on autorise que la vue index
 # les autres vues ne seront pas utilisées
   resources :slides, only: [:index]
+  
+  root :to => 'users#index'
+  resources :user_sessions
+  resources :users
 
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'logout' => 'user_sessions#destroy', :as => :logout
   # on crée un namespace admin pour administrer les slides
   namespace :admin do
     resources :slides
