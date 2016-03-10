@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
 # pour la resource slides sur le frontend,
 # on autorise que la vue index
 # les autres vues ne seront pas utilisées
